@@ -1,862 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            start: '#6a11cb',
-                            end: '#2575fc',
-                        },
-                        secondary: '#f0f2f5',
-                        accent: '#e74c3c',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'card': '0 10px 30px rgba(0, 0, 0, 0.15)',
-                        'card-hover': '0 15px 40px rgba(0, 0, 0, 0.2)',
-                        'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.1)',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.3s ease-out',
-                        'pulse-glow': 'pulseGlow 2s infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(10px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 5px rgba(106, 17, 203, 0.5)' },
-                            '50%': { boxShadow: '0 0 20px rgba(106, 17, 203, 0.8)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        /* Custom styles for enhancements */
-        .gradient-bg {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            min-height: 100vh;
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .qr-code-container {
-            transition: all 0.3s ease;
-        }
-        
-        .qr-code-container:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #6a11cb, #2575fc);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #5a0db9, #1c68e8);
-        }
-        
-        /* Loading animation */
-        .loader {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 3px solid #6a11cb;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Checkbox styling */
-        input[type="checkbox"] {
-            accent-color: #6a11cb;
-        }
-        
-        /* Range slider styling */
-        input[type="range"] {
-            accent-color: #6a11cb;
-        }
-    </style>
-</head>
-<body class="gradient-bg text-gray-800 font-sans">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header -->
-        <header class="text-center mb-12 animate-fade-in">
-            <div class="glass-effect inline-block px-8 py-6 rounded-2xl mb-6 shadow-card">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                    <i class="fas fa-qrcode mr-3"></i>Advanced QR Code Generator
-                </h1>
-                <p class="text-lg text-white/90 max-w-2xl mx-auto">
-                    Create customized QR codes for URLs, text, contact info, WiFi credentials, and more with advanced styling options.
-                </p>
-            </div>
-            
-            <!-- Stats Bar -->
-            <div class="flex flex-wrap justify-center gap-6 mb-8">
-                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 text-white">
-                    <div class="text-2xl font-bold">4+</div>
-                    <div class="text-sm">QR Types</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 text-white">
-                    <div class="text-2xl font-bold">12</div>
-                    <div class="text-sm">History Slots</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 text-white">
-                    <div class="text-2xl font-bold">100%</div>
-                    <div class="text-sm">Customizable</div>
-                </div>
-                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3 text-white">
-                    <div class="text-2xl font-bold">Free</div>
-                    <div class="text-sm">To Use</div>
-                </div>
-            </div>
-        </header>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to AgroYouth — Growing Careers in Agriculture</title>
+<meta name="description" content="Meet AgroYouth: a platform connecting young South Africans with agricultural jobs, training, funding and mentorship. Log in or register to get started.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#2E7D32; --emerald:#43A047; --lime:#81C784; --white:#FFFFFF;
+  --gray:#F5F5F5; --sky:#4FC3F7; --brown:#8D6E63; --gold:#FBC02D;
+  --ink:#122016; --ink-soft:#3d4f43; --line:#e1e7e2;
+  --display:'Space Grotesk',sans-serif; --body:'Inter',sans-serif; --mono:'JetBrains Mono',monospace;
+  --shadow:0 20px 50px -20px rgba(20,40,25,0.35);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:var(--body); color:var(--ink); background:var(--white); line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:var(--display); line-height:1.12; letter-spacing:-0.01em; font-weight:600;}
+a{color:inherit;}
+img{max-width:100%; display:block;}
+button{font-family:inherit; cursor:pointer;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:0.12em; font-size:0.76rem; color:var(--lime); font-weight:600; display:inline-flex; align-items:center; gap:8px;}
+.eyebrow::before{content:''; width:18px; height:2px; background:var(--gold); display:inline-block; border-radius:2px;}
 
-        <!-- Main Content -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- Settings Panel -->
-            <div class="bg-white rounded-2xl shadow-card p-6 animate-slide-up">
-                <div class="flex items-center mb-6">
-                    <div class="w-3 h-8 bg-gradient-to-b from-primary-start to-primary-end rounded-full mr-3"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">QR Code Settings</h2>
-                </div>
-                
-                <!-- QR Type Selection -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-700">QR Code Type</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <button id="type-text" onclick="selectType('text')" class="qr-type-btn bg-gradient-to-r from-primary-start to-primary-end text-white py-4 rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:shadow-card-hover active:scale-95">
-                            <i class="fas fa-font text-2xl mb-2"></i>
-                            <span>Text/URL</span>
-                        </button>
-                        <button id="type-wifi" onclick="selectType('wifi')" class="qr-type-btn bg-gray-100 text-gray-700 py-4 rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:shadow-card-hover active:scale-95">
-                            <i class="fas fa-wifi text-2xl mb-2"></i>
-                            <span>WiFi</span>
-                        </button>
-                        <button id="type-contact" onclick="selectType('contact')" class="qr-type-btn bg-gray-100 text-gray-700 py-4 rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:shadow-card-hover active:scale-95">
-                            <i class="fas fa-address-card text-2xl mb-2"></i>
-                            <span>Contact</span>
-                        </button>
-                        <button id="type-email" onclick="selectType('email')" class="qr-type-btn bg-gray-100 text-gray-700 py-4 rounded-xl flex flex-col items-center justify-center transition-all duration-300 hover:shadow-card-hover active:scale-95">
-                            <i class="fas fa-envelope text-2xl mb-2"></i>
-                            <span>Email</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Content Inputs -->
-                <div id="text-input" class="mb-6">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700">Content</h3>
-                    <div class="relative">
-                        <i class="fas fa-pencil-alt absolute left-4 top-4 text-gray-400"></i>
-                        <input type="text" id="content" placeholder="Enter text or URL here..." class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                    </div>
-                </div>
-                
-                <!-- WiFi Inputs -->
-                <div id="wifi-input" class="mb-6 hidden">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700">WiFi Details</h3>
-                    <div class="space-y-4">
-                        <div class="relative">
-                            <i class="fas fa-wifi absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="wifi-ssid" placeholder="Network name (SSID)" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-key absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="wifi-password" placeholder="Network password" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-gray-700">Encryption Type</label>
-                            <select id="wifi-type" class="w-full py-3 px-4 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                                <option value="WPA">WPA/WPA2</option>
-                                <option value="WEP">WEP</option>
-                                <option value="nopass">No Encryption</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Inputs -->
-                <div id="contact-input" class="mb-6 hidden">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700">Contact Details</h3>
-                    <div class="space-y-4">
-                        <div class="relative">
-                            <i class="fas fa-user absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="contact-name" placeholder="Full name" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-phone absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="contact-phone" placeholder="Phone number" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-envelope absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="contact-email" placeholder="Email address" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Email Inputs -->
-                <div id="email-input" class="mb-6 hidden">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700">Email Details</h3>
-                    <div class="space-y-4">
-                        <div class="relative">
-                            <i class="fas fa-at absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="email-to" placeholder="recipient@example.com" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-heading absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="email-subject" placeholder="Email subject" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-align-left absolute left-4 top-4 text-gray-400"></i>
-                            <input type="text" id="email-body" placeholder="Email message" class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-primary-start focus:ring-2 focus:ring-primary-start/30 outline-none transition-all duration-300">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Customization Options -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <!-- Size Slider -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3 text-gray-700">QR Code Size</h3>
-                        <div class="bg-gray-50 p-4 rounded-xl">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-medium text-gray-600">Size:</span>
-                                <span id="sizeValue" class="font-bold text-primary-start">300px</span>
-                            </div>
-                            <input type="range" id="size" min="100" max="500" value="300" step="10" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
-                            <div class="flex justify-between text-xs text-gray-500 mt-1">
-                                <span>Small</span>
-                                <span>Medium</span>
-                                <span>Large</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Color Selection -->
-                    <div>
-                        <h3 class="text-lg font-semibold mb-3 text-gray-700">Colors</h3>
-                        <div class="grid grid-cols-4 gap-2">
-                            <button onclick="selectColor('#000000')" class="color-option bg-black text-white py-3 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-black">
-                                <i class="fas fa-check mr-2"></i>Dark
-                            </button>
-                            <button onclick="selectColor('#6a11cb')" class="color-option bg-gradient-to-r from-primary-start to-primary-end text-white py-3 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-gray-300">
-                                Primary
-                            </button>
-                            <button onclick="selectColor('#2575fc')" class="color-option bg-primary-end text-white py-3 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-gray-300">
-                                Secondary
-                            </button>
-                            <button onclick="selectColor('#e74c3c')" class="color-option bg-accent text-white py-3 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-gray-300">
-                                Accent
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Options -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700">Options</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
-                            <input type="checkbox" id="logo" checked class="w-5 h-5 rounded">
-                            <span class="text-gray-700 font-medium">Add Logo</span>
-                        </label>
-                        <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
-                            <input type="checkbox" id="rounded" checked class="w-5 h-5 rounded">
-                            <span class="text-gray-700 font-medium">Rounded Corners</span>
-                        </label>
-                        <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition-colors">
-                            <input type="checkbox" id="gradient" checked class="w-5 h-5 rounded">
-                            <span class="text-gray-700 font-medium">Gradient Effect</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button onclick="generateQRCode()" class="flex-1 bg-gradient-to-r from-primary-start to-primary-end text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 active:translate-y-0">
-                        <i class="fas fa-bolt"></i> Generate QR Code
-                    </button>
-                    <button onclick="resetForm()" class="flex-1 bg-gray-100 text-gray-800 font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 hover:bg-gray-200 active:bg-gray-300">
-                        <i class="fas fa-redo"></i> Reset All
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Preview Panel -->
-            <div class="bg-white rounded-2xl shadow-card p-6 animate-slide-up">
-                <div class="flex items-center mb-6">
-                    <div class="w-3 h-8 bg-gradient-to-b from-primary-start to-primary-end rounded-full mr-3"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">QR Code Preview</h2>
-                </div>
-                
-                <!-- QR Code Display -->
-                <div class="qr-code-container bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl flex flex-col items-center justify-center min-h-[400px] mb-8 shadow-inner-light">
-                    <div id="qrcode" class="w-full flex items-center justify-center">
-                        <div class="text-center p-8">
-                            <div class="loader mx-auto mb-4"></div>
-                            <p class="text-gray-500 font-medium">Your QR code will appear here</p>
-                            <p class="text-sm text-gray-400 mt-2">Customize settings and click "Generate"</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button onclick="downloadQRCode()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 active:translate-y-0">
-                        <i class="fas fa-download"></i> Download PNG
-                    </button>
-                    <button onclick="shareQRCode()" class="bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 active:translate-y-0">
-                        <i class="fas fa-share-alt"></i> Share QR Code
-                    </button>
-                </div>
-                
-                <!-- Quick Tips -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-700 flex items-center">
-                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Quick Tips
-                    </h3>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2 text-sm"></i>
-                            <span>For best results, use high contrast colors</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2 text-sm"></i>
-                            <span>Test your QR code with multiple scanners</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-2 text-sm"></i>
-                            <span>Keep QR codes simple for better scanning</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- History Section -->
-        <div class="bg-white rounded-2xl shadow-card p-6 mb-12">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center">
-                    <div class="w-3 h-8 bg-gradient-to-b from-primary-start to-primary-end rounded-full mr-3"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">Recently Generated QR Codes</h2>
-                </div>
-                <button onclick="clearHistory()" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-xl transition-colors">
-                    <i class="fas fa-trash-alt mr-2"></i>Clear History
-                </button>
-            </div>
-            
-            <div id="history" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <!-- History items will be added here -->
-                <div class="col-span-full text-center py-8 text-gray-500">
-                    <i class="fas fa-history text-4xl mb-4 text-gray-300"></i>
-                    <p class="font-medium">No QR codes generated yet</p>
-                    <p class="text-sm">Your generated QR codes will appear here</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <footer class="text-center text-white/80">
-            <div class="glass-effect inline-block px-6 py-4 rounded-xl">
-                <p class="text-lg">
-                    <i class="fas fa-heart text-accent mr-2"></i>Advanced QR Code Generator 2025 with KOWNY
-                </p>
-                <p class="text-sm mt-2">Made by MULAUDZI KONANANI</p>
-            </div>
-        </footer>
+.shell{min-height:100vh; display:grid; grid-template-columns:1.15fr 1fr;}
+
+/* ===== LEFT: STORY / INTRO ===== */
+.intro-side{
+  position:relative; overflow:hidden; color:#fff;
+  background:linear-gradient(160deg,#0d2313 0%, #163e1f 45%, #1f5a2c 100%);
+  padding:56px 60px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.intro-side::before{
+  content:''; position:absolute; inset:0;
+  background:url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1800&auto=format&fit=crop') center/cover;
+  opacity:0.4; mix-blend-mode:luminosity;
+}
+.intro-side::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,25,13,0.5) 0%, rgba(10,25,13,0.86) 100%);}
+.intro-content{position:relative; z-index:1;}
+.back-home{display:inline-flex; align-items:center; gap:8px; font-size:0.88rem; color:#cfe4d2; margin-bottom:50px; transition:.2s;}
+.back-home:hover{color:var(--lime);}
+.logo{font-family:var(--display); font-weight:700; font-size:1.3rem; display:flex; align-items:center; gap:8px; margin-bottom:34px;}
+.intro-content h1{font-size:clamp(2rem,3.4vw,2.9rem); margin-bottom:22px; max-width:520px;}
+.intro-content > p.lead{color:#dfeee2; font-size:1.08rem; max-width:480px; margin-bottom:36px;}
+.pillars{display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:520px; position:relative; z-index:1;}
+.pillar{background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:16px 18px; backdrop-filter:blur(6px);}
+.pillar .ic{font-size:1.3rem; margin-bottom:8px; display:block;}
+.pillar h4{font-size:0.92rem; margin-bottom:4px; font-family:var(--body); font-weight:600;}
+.pillar p{font-size:0.78rem; color:#c6ddc9;}
+.intro-stats{position:relative; z-index:1; display:flex; gap:36px; margin-top:44px; flex-wrap:wrap;}
+.intro-stats div b{display:block; font-family:var(--display); font-size:1.5rem; color:var(--gold);}
+.intro-stats div span{font-size:0.78rem; color:#c6ddc9;}
+
+/* ===== RIGHT: LOGIN / REGISTER ===== */
+.auth-side{display:flex; align-items:center; justify-content:center; padding:40px; background:var(--gray);}
+.auth-card{width:100%; max-width:400px;}
+.auth-card > p.eyebrow{color:var(--emerald); margin-bottom:10px;}
+.auth-card h2{font-size:1.7rem; margin-bottom:8px;}
+.auth-card > p.sub{color:var(--ink-soft); font-size:0.92rem; margin-bottom:28px;}
+.tabs{display:flex; background:var(--white); border:1px solid var(--line); border-radius:100px; padding:5px; margin-bottom:28px;}
+.tabs button{flex:1; padding:11px 0; border-radius:100px; font-weight:600; font-size:0.9rem; color:var(--ink-soft); background:none; transition:.25s; border:none;}
+.tabs button.active{background:var(--forest); color:#fff;}
+.panel{display:none;}
+.panel.active{display:block; animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+.field{margin-bottom:18px;}
+.field label{display:block; font-size:0.84rem; font-weight:600; margin-bottom:7px;}
+.field input, .field select{width:100%; padding:13px 16px; border-radius:10px; border:1.5px solid var(--line); font-size:0.92rem; background:var(--white); outline:none; transition:.2s; font-family:inherit;}
+.field input:focus, .field select:focus{border-color:var(--forest); box-shadow:0 0 0 3px rgba(46,125,50,0.14);}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+.remember-row{display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--ink-soft); margin-bottom:22px;}
+.remember-row label{display:flex; align-items:center; gap:8px; cursor:pointer;}
+.remember-row a{color:var(--forest); font-weight:600; text-decoration:none;}
+.remember-row a:hover{text-decoration:underline;}
+.btn-submit{width:100%; padding:15px; border-radius:100px; background:var(--forest); color:#fff; border:none; font-weight:600; font-size:0.96rem; box-shadow:0 12px 28px -10px rgba(46,125,50,0.5); transition:transform .2s ease, background .2s;}
+.btn-submit:hover{transform:translateY(-2px); background:#1e5a22;}
+.divider{display:flex; align-items:center; gap:14px; margin:24px 0; color:var(--ink-soft); font-size:0.8rem;}
+.divider::before, .divider::after{content:''; flex:1; height:1px; background:var(--line);}
+.social-auth{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+.social-auth button{padding:12px; border-radius:10px; border:1.5px solid var(--line); background:#fff; font-size:0.86rem; font-weight:600; display:flex; align-items:center; justify-content:center; gap:8px; transition:.2s; cursor:pointer;}
+.social-auth button:hover{border-color:var(--forest); background:var(--gray);}
+.role-select{margin-bottom:18px;}
+.success-msg{display:none; background:#eaf6ec; border:1.5px solid var(--emerald); color:var(--forest); padding:14px 16px; border-radius:12px; font-size:0.88rem; margin-top:18px; font-weight:600;}
+.success-msg.show{display:block; animation:fadeUp .35s ease;}
+.terms{font-size:0.78rem; color:var(--ink-soft); margin-top:16px;}
+.terms a{color:var(--forest); font-weight:600; text-decoration:none;}
+.terms a:hover{text-decoration:underline;}
+
+/* Password container with toggle */
+.password-container{position:relative;}
+.password-container input{padding-right:48px;}
+.toggle-password{position:absolute; right:14px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:1.2rem; user-select:none; background:none; border:none; padding:4px;}
+
+@media (max-width:920px){
+  .shell{grid-template-columns:1fr;}
+  .intro-side{padding:44px 28px;}
+  .pillars{grid-template-columns:1fr 1fr;}
+  .auth-side{padding:36px 24px;}
+}
+@media (max-width:480px){
+  .pillars{grid-template-columns:1fr;}
+  .row2{grid-template-columns:1fr;}
+  .intro-stats{flex-direction:column; gap:12px;}
+}
+@media (prefers-reduced-motion:reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============ LEFT: PROJECT INTRODUCTION ============ -->
+  <div class="intro-side">
+    <div class="intro-content">
+      <div class="logo">🌱 AgroYouth</div>
+      <p class="eyebrow">Welcome</p>
+      <h1 style="margin-top:14px;">One account. Every path into agriculture.</h1>
+      <p class="lead">AgroYouth is a digital platform built to reduce youth unemployment by connecting young people to agricultural jobs, training, funding and mentorship — and turning farming into a modern, technology-driven career.</p>
+
+      <div class="pillars">
+        <div class="pillar"><span class="ic">💼</span><h4>Find Jobs</h4><p>Browse real agricultural roles hiring now.</p></div>
+        <div class="pillar"><span class="ic">🎓</span><h4>Get Trained</h4><p>Courses in modern, tech-driven farming.</p></div>
+        <div class="pillar"><span class="ic">🏦</span><h4>Access Funding</h4><p>Grants and support to start your business.</p></div>
+        <div class="pillar"><span class="ic">🧑‍🌾</span><h4>Find a Mentor</h4><p>Learn directly from industry experts.</p></div>
+      </div>
     </div>
 
-    <!-- QR Code Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
-    <!-- Main JavaScript -->
-    <script>
-        // Global variables
-        let currentQRCode = null;
-        let currentColor = '#000000';
-        let currentType = 'text';
-        let history = JSON.parse(localStorage.getItem('qrHistory')) || [];
-        
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            updateSizeValue();
-            loadHistory();
-            
-            // Add event listeners
-            document.getElementById('size').addEventListener('input', updateSizeValue);
-            
-            // Enter key support
-            document.getElementById('content').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') generateQRCode();
-            });
-            
-            // Mark text type as active initially
-            document.getElementById('type-text').classList.add('border-2', 'border-primary-start');
-        });
-        
-        // Update size value display
-        function updateSizeValue() {
-            const size = document.getElementById('size').value;
-            document.getElementById('sizeValue').textContent = `${size}px`;
-        }
-        
-        // Select QR code type
-        function selectType(type) {
-            currentType = type;
-            
-            // Update active type button
-            document.querySelectorAll('.qr-type-btn').forEach(btn => {
-                btn.classList.remove('bg-gradient-to-r', 'from-primary-start', 'to-primary-end', 'text-white');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-                btn.classList.remove('border-2', 'border-primary-start');
-            });
-            
-            const activeBtn = document.getElementById(`type-${type}`);
-            activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-            activeBtn.classList.add('bg-gradient-to-r', 'from-primary-start', 'to-primary-end', 'text-white', 'border-2', 'border-primary-start');
-            
-            // Show/hide input fields
-            document.getElementById('text-input').classList.toggle('hidden', type !== 'text');
-            document.getElementById('wifi-input').classList.toggle('hidden', type !== 'wifi');
-            document.getElementById('contact-input').classList.toggle('hidden', type !== 'contact');
-            document.getElementById('email-input').classList.toggle('hidden', type !== 'email');
-        }
-        
-        // Select color
-        function selectColor(color) {
-            currentColor = color;
-            
-            // Update active color button
-            document.querySelectorAll('.color-option').forEach(btn => {
-                btn.classList.remove('border-2', 'border-black');
-                btn.classList.add('border-2', 'border-gray-300');
-                const icon = btn.querySelector('i');
-                if (icon) icon.classList.add('hidden');
-            });
-            
-            const activeColorBtn = event.currentTarget;
-            activeColorBtn.classList.remove('border-2', 'border-gray-300');
-            activeColorBtn.classList.add('border-2', 'border-black');
-            
-            // Show check icon on selected color
-            const icon = activeColorBtn.querySelector('i');
-            if (icon) icon.classList.remove('hidden');
-        }
-        
-        // Generate QR code
-        function generateQRCode() {
-            let content = '';
-            let description = '';
-            
-            // Get content based on type
-            switch(currentType) {
-                case 'text':
-                    content = document.getElementById('content').value;
-                    description = content.substring(0, 20) + (content.length > 20 ? '...' : '');
-                    break;
-                    
-                case 'wifi':
-                    const ssid = document.getElementById('wifi-ssid').value;
-                    const password = document.getElementById('wifi-password').value;
-                    const encryption = document.getElementById('wifi-type').value;
-                    
-                    if (!ssid) {
-                        showAlert('Please enter a WiFi SSID', 'warning');
-                        return;
-                    }
-                    
-                    content = `WIFI:S:${ssid};T:${encryption};P:${password};;`;
-                    description = `WiFi: ${ssid}`;
-                    break;
-                    
-                case 'contact':
-                    const name = document.getElementById('contact-name').value;
-                    const phone = document.getElementById('contact-phone').value;
-                    const email = document.getElementById('contact-email').value;
-                    
-                    if (!name) {
-                        showAlert('Please enter a contact name', 'warning');
-                        return;
-                    }
-                    
-                    content = `MECARD:N:${name};TEL:${phone};EMAIL:${email};;`;
-                    description = `Contact: ${name}`;
-                    break;
-                    
-                case 'email':
-                    const to = document.getElementById('email-to').value;
-                    const subject = document.getElementById('email-subject').value;
-                    const body = document.getElementById('email-body').value;
-                    
-                    if (!to) {
-                        showAlert('Please enter a recipient email', 'warning');
-                        return;
-                    }
-                    
-                    content = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    description = `Email: ${to}`;
-                    break;
-            }
-            
-            if (!content) {
-                showAlert('Please enter some content to generate a QR code', 'warning');
-                return;
-            }
-            
-            // Show loading state
-            const qrcodeElement = document.getElementById('qrcode');
-            qrcodeElement.innerHTML = `
-                <div class="text-center p-8">
-                    <div class="loader mx-auto mb-4"></div>
-                    <p class="text-gray-500 font-medium">Generating QR Code...</p>
-                </div>
-            `;
-            
-            // Clear previous QR code
-            if (currentQRCode) {
-                currentQRCode.clear();
-            }
-            
-            // Get options
-            const size = parseInt(document.getElementById('size').value);
-            const addLogo = document.getElementById('logo').checked;
-            const rounded = document.getElementById('rounded').checked;
-            const gradient = document.getElementById('gradient').checked;
-            
-            // Create QR code with a slight delay for UX
-            setTimeout(() => {
-                currentQRCode = new QRCode(qrcodeElement, {
-                    text: content,
-                    width: size,
-                    height: size,
-                    colorDark: currentColor,
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-                
-                // Apply styling after a short delay to ensure QR code is rendered
-                setTimeout(() => {
-                    const qrCanvas = document.querySelector('#qrcode canvas');
-                    if (!qrCanvas) return;
-                    
-                    const ctx = qrCanvas.getContext('2d');
-                    
-                    // Apply rounded corners
-                    if (rounded) {
-                        qrCanvas.style.borderRadius = '12px';
-                    }
-                    
-                    // Apply gradient effect
-                    if (gradient) {
-                        // Create gradient
-                        const gradientEffect = ctx.createLinearGradient(0, 0, qrCanvas.width, qrCanvas.height);
-                        gradientEffect.addColorStop(0, currentColor);
-                        
-                        // Determine end color based on current color
-                        let endColor;
-                        if (currentColor === '#000000') {
-                            endColor = '#333333';
-                        } else if (currentColor === '#6a11cb') {
-                            endColor = '#2575fc';
-                        } else if (currentColor === '#2575fc') {
-                            endColor = '#6a11cb';
-                        } else if (currentColor === '#e74c3c') {
-                            endColor = '#ff6b6b';
-                        } else {
-                            endColor = currentColor;
-                        }
-                        
-                        gradientEffect.addColorStop(1, endColor);
-                        
-                        // Apply gradient to QR code
-                        ctx.globalCompositeOperation = 'source-in';
-                        ctx.fillStyle = gradientEffect;
-                        ctx.fillRect(0, 0, qrCanvas.width, qrCanvas.height);
-                        ctx.globalCompositeOperation = 'source-over';
-                    }
-                    
-                    // Add logo
-                    if (addLogo) {
-                        const logoSize = size / 5;
-                        const logoX = (size - logoSize) / 2;
-                        const logoY = (size - logoSize) / 2;
-                        
-                        // Create a simple logo (letter Q in a circle)
-                        ctx.fillStyle = currentColor;
-                        ctx.beginPath();
-                        ctx.arc(size/2, size/2, logoSize/2, 0, Math.PI * 2);
-                        ctx.fill();
-                        
-                        ctx.fillStyle = '#ffffff';
-                        ctx.font = `bold ${logoSize * 0.6}px Arial`;
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
-                        ctx.fillText('Q', size/2, size/2);
-                    }
-                    
-                    // Add pulse animation to QR code
-                    qrCanvas.classList.add('animate-pulse-glow');
-                    
-                }, 100);
-                
-                // Add to history
-                addToHistory(content, description);
-                
-                // Show success message
-                showAlert('QR code generated successfully!', 'success');
-                
-            }, 500);
-        }
-        
-        // Download QR code
-        function downloadQRCode() {
-            const canvas = document.querySelector('#qrcode canvas');
-            
-            if (!canvas) {
-                showAlert('Please generate a QR code first', 'warning');
-                return;
-            }
-            
-            const link = document.createElement('a');
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            link.download = `qr-code-${timestamp}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-            
-            showAlert('QR code downloaded successfully!', 'success');
-        }
-        
-        // Share QR code
-        function shareQRCode() {
-            const canvas = document.querySelector('#qrcode canvas');
-            
-            if (!canvas) {
-                showAlert('Please generate a QR code first', 'warning');
-                return;
-            }
-            
-            if (navigator.share) {
-                canvas.toBlob(blob => {
-                    const file = new File([blob], 'qr-code.png', { type: 'image/png' });
-                    
-                    navigator.share({
-                        title: 'My QR Code',
-                        text: 'Check out this QR code I generated!',
-                        files: [file]
-                    })
-                    .then(() => showAlert('QR code shared successfully!', 'success'))
-                    .catch(error => {
-                        if (error.name !== 'AbortError') {
-                            showAlert('Unable to share QR code', 'error');
-                        }
-                    });
-                });
-            } else {
-                // Fallback: copy to clipboard
-                canvas.toBlob(blob => {
-                    const item = new ClipboardItem({ 'image/png': blob });
-                    navigator.clipboard.write([item])
-                        .then(() => showAlert('QR code copied to clipboard!', 'success'))
-                        .catch(() => showAlert('Unable to copy QR code to clipboard', 'error'));
-                });
-            }
-        }
-        
-        // Reset form
-        function resetForm() {
-            document.getElementById('content').value = '';
-            document.getElementById('wifi-ssid').value = '';
-            document.getElementById('wifi-password').value = '';
-            document.getElementById('contact-name').value = '';
-            document.getElementById('contact-phone').value = '';
-            document.getElementById('contact-email').value = '';
-            document.getElementById('email-to').value = '';
-            document.getElementById('email-subject').value = '';
-            document.getElementById('email-body').value = '';
-            
-            document.getElementById('size').value = 300;
-            updateSizeValue();
-            
-            document.getElementById('qrcode').innerHTML = `
-                <div class="text-center p-8">
-                    <div class="loader mx-auto mb-4"></div>
-                    <p class="text-gray-500 font-medium">Your QR code will appear here</p>
-                    <p class="text-sm text-gray-400 mt-2">Customize settings and click "Generate"</p>
-                </div>
-            `;
-            
-            // Reset color selection
-            selectColor('#000000');
-            
-            // Reset type selection
-            selectType('text');
-            
-            currentQRCode = null;
-            
-            showAlert('Form reset successfully', 'info');
-        }
-        
-        // Clear history
-        function clearHistory() {
-            history = [];
-            localStorage.setItem('qrHistory', JSON.stringify(history));
-            loadHistory();
-            showAlert('History cleared successfully', 'info');
-        }
-        
-        // Add to history
-        function addToHistory(content, description) {
-            const canvas = document.querySelector('#qrcode canvas');
-            
-            if (!canvas) return;
-            
-            const dataUrl = canvas.toDataURL('image/png');
-            
-            const historyItem = {
-                id: Date.now(),
-                type: currentType,
-                content: content,
-                description: description,
-                dataUrl: dataUrl,
-                timestamp: new Date().toLocaleString()
-            };
-            
-            // Add to beginning of history array
-            history.unshift(historyItem);
-            
-            // Keep only last 12 items
-            if (history.length > 12) {
-                history = history.slice(0, 12);
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('qrHistory', JSON.stringify(history));
-            
-            // Update history display
-            loadHistory();
-        }
-        
-        // Load history
-        function loadHistory() {
-            const historyGrid = document.getElementById('history');
-            historyGrid.innerHTML = '';
-            
-            if (history.length === 0) {
-                historyGrid.innerHTML = `
-                    <div class="col-span-full text-center py-8 text-gray-500">
-                        <i class="fas fa-history text-4xl mb-4 text-gray-300"></i>
-                        <p class="font-medium">No QR codes generated yet</p>
-                        <p class="text-sm">Your generated QR codes will appear here</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            history.forEach(item => {
-                const historyItem = document.createElement('div');
-                historyItem.className = 'history-item bg-gray-50 rounded-xl p-3 flex flex-col items-center cursor-pointer transition-all duration-300 hover:bg-gray-100 hover:shadow-card-hover hover:-translate-y-1';
-                historyItem.innerHTML = `
-                    <img src="${item.dataUrl}" alt="QR Code" class="w-full h-32 object-contain mb-2 rounded-lg">
-                    <p class="text-xs font-medium text-gray-700 text-center truncate w-full">${item.description}</p>
-                    <p class="text-xs text-gray-500 mt-1">${item.type}</p>
-                `;
-                
-                historyItem.addEventListener('click', () => {
-                    // Load this QR code into the preview
-                    document.getElementById('qrcode').innerHTML = `<img src="${item.dataUrl}" alt="QR Code" class="rounded-lg">`;
-                    showAlert('QR code loaded from history', 'info');
-                });
-                
-                historyGrid.appendChild(historyItem);
-            });
-        }
-        
-        // Show alert message
-        function showAlert(message, type = 'info') {
-            // Remove any existing alert
-            const existingAlert = document.querySelector('.alert-message');
-            if (existingAlert) existingAlert.remove();
-            
-            // Create alert element
-            const alert = document.createElement('div');
-            alert.className = `alert-message fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-card text-white font-medium animate-slide-up ${getAlertColor(type)}`;
-            alert.innerHTML = `
-                <div class="flex items-center">
-                    <i class="fas ${getAlertIcon(type)} mr-3"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(alert);
-            
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                alert.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                setTimeout(() => alert.remove(), 300);
-            }, 3000);
-        }
-        
-        // Get alert color based on type
-        function getAlertColor(type) {
-            switch(type) {
-                case 'success': return 'bg-gradient-to-r from-green-500 to-emerald-600';
-                case 'warning': return 'bg-gradient-to-r from-yellow-500 to-amber-600';
-                case 'error': return 'bg-gradient-to-r from-red-500 to-rose-600';
-                default: return 'bg-gradient-to-r from-blue-500 to-cyan-600';
-            }
-        }
-        
-        // Get alert icon based on type
-        function getAlertIcon(type) {
-            switch(type) {
-                case 'success': return 'fa-check-circle';
-                case 'warning': return 'fa-exclamation-triangle';
-                case 'error': return 'fa-times-circle';
-                default: return 'fa-info-circle';
-            }
-        }
-    </script>
+    <div class="intro-stats">
+      <div><b>38,000+</b><span>youth trained</span></div>
+      <div><b>12,400+</b><span>jobs listed</span></div>
+      <div><b>2,150+</b><span>businesses created</span></div>
+    </div>
+  </div>
+
+  <!-- ============ RIGHT: LOGIN / REGISTER ============ -->
+  <div class="auth-side">
+    <div class="auth-card">
+      <p class="eyebrow">Get Started</p>
+      <h2 id="authHeading">Welcome back</h2>
+      <p class="sub" id="authSub">Log in to continue building your agricultural career.</p>
+
+      <div class="tabs">
+        <button type="button" id="tabLogin" class="active" data-tab="login">Login</button>
+        <button type="button" id="tabRegister" data-tab="register">Register</button>
+      </div>
+
+      <!-- ===== LOGIN PANEL ===== -->
+      <form class="panel active" id="loginPanel" onsubmit="handleSubmit(event,'login')">
+        <div class="field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="password-container">
+            <input type="password" id="loginPassword" required placeholder="Enter your password">
+            <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</button>
+          </div>
+        </div>
+        <div class="remember-row">
+          <label><input type="checkbox" style="width:auto; margin-right:4px;"> Remember me</label>
+          <a href="Forgot.html">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn-submit">Log In</button>
+
+        <div class="divider">or continue with</div>
+        <div class="social-auth">
+          <button type="button">🟢 Google</button>
+          <button type="button">📘 Facebook</button>
+        </div>
+        <div class="success-msg" id="loginSuccess">✓ Welcome back! Redirecting you to the platform…</div>
+      </form>
+
+      <!-- ===== REGISTER PANEL ===== -->
+      <form class="panel" id="registerPanel" onsubmit="handleSubmit(event,'register')">
+        <div class="row2">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" required placeholder="Thabo">
+          </div>
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" required placeholder="Nkosi">
+          </div>
+        </div>
+        <div class="field">
+          <label for="regEmail">Email address</label>
+          <input type="email" id="regEmail" required placeholder="you@example.com">
+        </div>
+        <div class="field role-select">
+          <label for="regRole">I am joining as a...</label>
+          <select id="regRole" required>
+            <option value="">Select your role</option>
+            <option>Student</option>
+            <option>Graduate</option>
+            <option>Farmer</option>
+            <option>Entrepreneur</option>
+            <option>Employer / Partner</option>
+            <option>Mentor</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="regPassword">Password</label>
+          <div class="password-container">
+            <input type="password" id="regPassword" required placeholder="Create a strong password">
+            <button type="button" class="toggle-password" onclick="togglePassword('regPassword', this)">👁️</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Create Account</button>
+        <p class="terms">By registering, you agree to AgroYouth's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+        <div class="success-msg" id="registerSuccess">✓ Account created! Redirecting you to the platform…</div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===== TAB SWITCHING =====
+const tabLogin = document.getElementById('tabLogin');
+const tabRegister = document.getElementById('tabRegister');
+const loginPanel = document.getElementById('loginPanel');
+const registerPanel = document.getElementById('registerPanel');
+const authHeading = document.getElementById('authHeading');
+const authSub = document.getElementById('authSub');
+
+function showTab(tab){
+  const isLogin = tab === 'login';
+  tabLogin.classList.toggle('active', isLogin);
+  tabRegister.classList.toggle('active', !isLogin);
+  loginPanel.classList.toggle('active', isLogin);
+  registerPanel.classList.toggle('active', !isLogin);
+  authHeading.textContent = isLogin ? 'Welcome back' : 'Join AgroYouth';
+  authSub.textContent = isLogin
+    ? 'Log in to continue building your agricultural career.'
+    : 'Create an account to unlock jobs, training and funding.';
+}
+tabLogin.addEventListener('click', ()=> showTab('login'));
+tabRegister.addEventListener('click', ()=> showTab('register'));
+
+// ===== PASSWORD TOGGLE =====
+function togglePassword(inputId, btn){
+  const input = document.getElementById(inputId);
+  if(!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  btn.textContent = isPassword ? '🙈' : '👁️';
+}
+
+// ===== VALIDATION =====
+function validateLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  if(!email || !password){
+    alert('Please fill in all fields.');
+    return false;
+  }
+  if(!email.includes('@') || !email.includes('.')){
+    alert('Please enter a valid email address.');
+    return false;
+  }
+  if(password.length < 6){
+    alert('Password must be at least 6 characters.');
+    return false;
+  }
+  return true;
+}
+
+function validateRegister(){
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const role = document.getElementById('regRole').value;
+  const password = document.getElementById('regPassword').value;
+
+  if(!firstName || !lastName || !email || !role || !password){
+    alert('Please fill in all fields.');
+    return false;
+  }
+  if(!email.includes('@') || !email.includes('.')){
+    alert('Please enter a valid email address.');
+    return false;
+  }
+  if(password.length < 6){
+    alert('Password must be at least 6 characters.');
+    return false;
+  }
+  return true;
+}
+
+// ===== FORM SUBMIT HANDLER =====
+function handleSubmit(e, type){
+  e.preventDefault();
+
+  if(type === 'login' && !validateLogin()) return;
+  if(type === 'register' && !validateRegister()) return;
+
+  // Hide any existing success messages
+  document.querySelectorAll('.success-msg').forEach(msg => msg.classList.remove('show'));
+
+  const msg = document.getElementById(type === 'login' ? 'loginSuccess' : 'registerSuccess');
+  msg.classList.add('show');
+
+  // Disable submit button to prevent double-clicks
+  const btn = e.target.querySelector('.btn-submit');
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = type === 'login' ? 'Logging in…' : 'Creating account…';
+  }
+
+  setTimeout(() => {
+    window.location.href = 'HOME.html';
+  }, 1500);
+}
+
+// ===== PRESELECT TAB FROM URL HASH =====
+if(window.location.hash === '#register') showTab('register');
+</script>
+
 </body>
 </html>
