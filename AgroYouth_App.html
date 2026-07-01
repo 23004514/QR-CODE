@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AgroYouth App — Full Blueprint</title>
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #071A0E;
+  --bg2: #0D2416;
+  --card: #112A18;
+  --gold: #F5C842;
+  --green: #2ECC71;
+  --lgreen: #A8E6C3;
+  --blue: #42A5F5;
+  --purple: #CE93D8;
+  --red: #EF9A9A;
+  --white: #F0F4F0;
+  --muted: #7A9B82;
+  --border: #1E4A28;
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+body { background: var(--bg); color: var(--white); font-family: var(--font); line-height: 1.6; }
+a { color: var(--gold); text-decoration: none; }
+
+/* ── LAYOUT ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* ── HERO ── */
+.hero { background: linear-gradient(135deg, #071A0E 0%, #0D3A1A 60%, #071A0E 100%); padding: 72px 24px 56px; text-align: center; border-bottom: 2px solid var(--gold); }
+.hero .badge { display: inline-block; background: var(--gold); color: #071A0E; font-weight: 700; font-size: 12px; letter-spacing: 2px; padding: 4px 16px; border-radius: 20px; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1.1; }
+.hero h1 span { color: var(--gold); }
+.hero .tagline { font-size: clamp(15px, 2.5vw, 20px); color: var(--muted); margin: 16px auto 32px; max-width: 680px; }
+.hero .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.pill { background: var(--card); border: 1px solid var(--border); padding: 6px 18px; border-radius: 20px; font-size: 13px; color: var(--lgreen); }
+
+/* ── SECTION HEADERS ── */
+.sec-wrap { margin-top: 64px; }
+.sec-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+.sec-title { font-size: clamp(22px, 4vw, 36px); font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.sec-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+.divider { height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin-bottom: 32px; width: 80px; }
+
+/* ── PROBLEM CARDS ── */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+.card.gold-border { border-color: var(--gold); }
+.card.green-border { border-color: var(--green); }
+.card.blue-border { border-color: var(--blue); }
+.card-icon { font-size: 32px; margin-bottom: 12px; }
+.card-title { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.card-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 12px; }
+.tag-gold { background: rgba(245,200,66,0.15); color: var(--gold); }
+.tag-green { background: rgba(46,204,113,0.15); color: var(--green); }
+.tag-blue { background: rgba(66,165,245,0.15); color: var(--blue); }
+.tag-purple { background: rgba(206,147,216,0.15); color: var(--purple); }
+
+/* ── SCREENS SECTION ── */
+.screens-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.phone-frame { background: var(--card); border: 2px solid var(--border); border-radius: 28px; padding: 0; overflow: hidden; }
+.phone-notch { background: #0A1F10; height: 28px; display: flex; align-items: center; justify-content: center; }
+.phone-dot { width: 8px; height: 8px; background: #1E4A28; border-radius: 50%; }
+.phone-screen { padding: 16px; min-height: 360px; }
+.phone-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; }
+.phone-row { display: flex; align-items: center; gap: 8px; background: var(--bg2); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px; color: var(--white); }
+.phone-row .icon { font-size: 16px; min-width: 20px; }
+.phone-stat { background: var(--bg2); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+.phone-stat .num { font-size: 22px; font-weight: 800; color: var(--gold); }
+.phone-stat .lbl { font-size: 10px; color: var(--muted); }
+.phone-btn { background: var(--gold); color: #071A0E; font-size: 12px; font-weight: 700; border-radius: 8px; padding: 8px; text-align: center; margin-top: 8px; }
+.phone-btn.green { background: var(--green); }
+.phone-btn.blue { background: var(--blue); }
+.phone-bar { height: 6px; border-radius: 3px; margin-bottom: 4px; }
+.screen-label { text-align: center; font-size: 12px; color: var(--muted); padding: 10px 0; border-top: 1px solid var(--border); }
+
+/* ── FEATURE TABLE ── */
+.feat-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.feat-table th { background: var(--bg2); color: var(--gold); font-weight: 700; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--border); }
+.feat-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--white); vertical-align: top; }
+.feat-table tr:hover td { background: var(--card); }
+.feat-table .module { font-weight: 700; color: var(--lgreen); }
+.feat-table .first { color: var(--gold); font-weight: 700; }
+
+/* ── TECH STACK ── */
+.stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.stack-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+.stack-card h4 { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 12px; text-transform: uppercase; }
+.stack-item { font-size: 13px; color: var(--white); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+.stack-item:last-child { border-bottom: none; }
+.stack-item span { color: var(--muted); font-size: 12px; }
+
+/* ── IMPACT ── */
+.impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.impact-card { background: var(--card); border-radius: 14px; padding: 24px 16px; text-align: center; border-top: 3px solid var(--gold); }
+.impact-card .big { font-size: 40px; font-weight: 900; color: var(--gold); }
+.impact-card .lbl { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+/* ── FOOTER ── */
+footer { background: var(--bg2); border-top: 2px solid var(--border); padding: 40px 24px; text-align: center; }
+footer .logo { font-size: 28px; font-weight: 900; color: var(--gold); margin-bottom: 8px; }
+footer p { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🌱 AGROYOUTH APP — FULL PRODUCT BLUEPRINT</div>
+  <h1>Agro<span>Youth</span></h1>
+  <p class="tagline">The world's first app that fuses Indigenous Knowledge Systems, AI crop intelligence, and a youth-to-buyer marketplace — making agriculture the #1 career choice for African youth.</p>
+  <div class="pills">
+    <span class="pill">📱 Mobile-First</span>
+    <span class="pill">🌿 IKS-Powered</span>
+    <span class="pill">🤖 AI Crop Advisor</span>
+    <span class="pill">🛒 Direct Marketplace</span>
+    <span class="pill">🤝 Cooperative Builder</span>
+    <span class="pill">💰 Youth Income Engine</span>
+    <span class="pill">🇿🇦 Built in Limpopo</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- PROBLEM -->
+<!-- PROBLEM -->
+<div class="sec-wrap">
+  <div class="sec-label">The Problem</div>
+  <div class="sec-title">Why Youth Abandon Agriculture</div>
+  <div class="sec-sub">Four compounding barriers keep young people from choosing farming as a career.</div>
+  <div class="divider"></div>
+  <div class="grid-3">
+    <div class="card gold-border">
+      <div class="card-icon">😔</div>
+      <div class="card-title">Perceived as "Last Resort"</div>
+      <div class="card-body">Agriculture is associated with poverty, hard labour, and failure. Youth see it as what you do when all other options fail — not as a career of choice or innovation.</div>
+      <span class="tag tag-gold">Perception Gap</span>
+    </div>
+    <div class="card green-border">
+      <div class="card-icon">📚</div>
+      <div class="card-title">Knowledge Locked Away</div>
+      <div class="card-body">Generations of Indigenous Knowledge Systems (IKS) — traditional planting calendars, natural pest control, drought-resistant techniques — are dying with elders. No digital archive exists.</div>
+      <span class="tag tag-green">Knowledge Gap</span>
+    </div>
+    <div class="card blue-border">
+      <div class="card-icon">🔗</div>
+      <div class="card-title">No Market Access</div>
+      <div class="card-body">Young farmers grow produce but cannot connect directly to buyers, retailers, or restaurants. Middlemen take 60–80% of margins, making farming financially unviable for starters.</div>
+      <span class="tag tag-blue">Market Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--purple)">
+      <div class="card-icon">🧑‍🤝‍🧑</div>
+      <div class="card-title">No Community Structure</div>
+      <div class="card-body">Youth farmers operate alone, with no mechanism to form cooperatives, share equipment, pool resources, or access group-buying power for seeds and fertiliser.</div>
+      <span class="tag tag-purple">Community Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--red)">
+      <div class="card-icon">📊</div>
+      <div class="card-title">No Data, No Decisions</div>
+      <div class="card-body">Young farmers make planting and selling decisions based on guesswork. No weather alerts, no price forecasting, no soil data — leading to crop failures and financial loss.</div>
+      <span class="tag" style="background:rgba(239,154,154,0.15);color:var(--red)">Data Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="card-icon">💸</div>
+      <div class="card-title">No Proof of Income Path</div>
+      <div class="card-body">Without visible role models or a clear income pathway, youth cannot envision a financial future in agriculture. The sector lacks aspirational digital storytelling for the next generation.</div>
+      <span class="tag tag-gold">Aspiration Gap</span>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION -->
+<!-- SOLUTION -->
+<div class="sec-wrap">
+  <div class="sec-label">The Solution</div>
+  <div class="sec-title">AgroYouth: Six Modules, One Mission</div>
+  <div class="sec-sub">Each module directly kills one barrier. Together they create a complete ecosystem that makes agriculture aspirational, profitable, and community-powered.</div>
+  <div class="divider"></div>
+  <div class="grid-2">
+    <div class="card green-border">
+      <div class="card-icon">🌿</div>
+      <div class="card-title">Module 1 — IKS Knowledge Vault</div>
+      <div class="card-body">A living, searchable library of Indigenous Knowledge Systems contributed by elders, agricultural researchers, and community leaders. Video tutorials, audio guides in local languages (Sepedi, Tshivenda, Xitsonga), and illustrated planting guides — all offline-accessible. <strong style="color:var(--lgreen)">First-ever digital IKS archive for South African youth farmers.</strong></div>
+      <span class="tag tag-green">Kills: Knowledge Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--blue)">
+      <div class="card-icon">🤖</div>
+      <div class="card-title">Module 2 — AI Crop Advisor</div>
+      <div class="card-body">Photo-based crop disease diagnosis (point camera at plant → instant AI diagnosis). Weather-integrated planting calendar. Soil type recommendations. Price forecasting based on market trends. Pest alert system linked to regional outbreak data. <strong style="color:var(--blue)">No agronomist needed — AI fills the gap.</strong></div>
+      <span class="tag tag-blue">Kills: Data Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="card-icon">🛒</div>
+      <div class="card-title">Module 3 — Youth-to-Buyer Marketplace</div>
+      <div class="card-body">Direct listing of produce with verified buyer profiles (restaurants, retailers, schools, NGOs). Real-time price discovery. Logistics partner integration for last-mile delivery. Escrow-based payment protection for first-time sellers. <strong style="color:var(--gold)">Youth keep 95% of their margin.</strong></div>
+      <span class="tag tag-gold">Kills: Market Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--purple)">
+      <div class="card-icon">🤝</div>
+      <div class="card-title">Module 4 — Cooperative Builder</div>
+      <div class="card-body">In-app tools to form, register, and manage agricultural cooperatives. Shared resource scheduling (tractors, irrigation). Group purchasing for seeds and fertiliser at bulk prices. Digital cooperative constitution generator. CIPC registration guidance. <strong style="color:var(--purple)">From solo farmer to organised collective in minutes.</strong></div>
+      <span class="tag tag-purple">Kills: Community Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--green)">
+      <div class="card-icon">🎓</div>
+      <div class="card-title">Module 5 — AgriCareer Hub</div>
+      <div class="card-body">Agri-entrepreneurship courses, SETA-accredited short skills programmes, mentorship matching with successful young farmers, success story videos ("AgriStars"), and a job board for agri-adjacent work (logistics, processing, agri-tech). <strong style="color:var(--lgreen)">Shifts perception: agriculture = innovation + income.</strong></div>
+      <span class="tag tag-green">Kills: Aspiration Gap</span>
+    </div>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="card-icon">💰</div>
+      <div class="card-title">Module 6 — Finance & Grants Finder</div>
+      <div class="card-body">Curated, always-updated database of grants (NYDA, DRDLR, Land Bank, Agri-SA), micro-loan partners, crowdfunding tools, and a one-click grant application assistant powered by AI. Profile-matched: shows only grants you qualify for. <strong style="color:var(--gold)">No more Googling for funding.</strong></div>
+      <span class="tag tag-gold">Kills: Perception Gap (financial barrier)</span>
+    </div>
+  </div>
+</div>
+
+<!-- APP SCREENS -->
+<!-- APP SCREENS -->
+<div class="sec-wrap">
+  <div class="sec-label">App Screens</div>
+  <div class="sec-title">What Youth See When They Open AgroYouth</div>
+  <div class="sec-sub">Designed for low-end Android phones, offline-first, with local-language support.</div>
+  <div class="divider"></div>
+  <div class="screens-grid">
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-dot"></div></div>
+      <div class="phone-screen">
+        <div class="phone-title">🏠 Home Dashboard</div>
+        <div class="phone-stat"><div class="num">R1,240</div><div class="lbl">Earnings this month</div></div>
+        <div class="phone-row"><span class="icon">🌤️</span> Rain expected Thursday</div>
+        <div class="phone-row"><span class="icon">🚨</span> Aphid alert — Limpopo</div>
+        <div class="phone-row"><span class="icon">📈</span> Tomato price up 12%</div>
+        <div class="phone-btn">📷 Scan My Crop</div>
+      </div>
+      <div class="screen-label">Home</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-dot"></div></div>
+      <div class="phone-screen">
+        <div class="phone-title">🌿 IKS Vault</div>
+        <div class="phone-row"><span class="icon">🎥</span> Companion Planting (Sepedi)</div>
+        <div class="phone-row"><span class="icon">🎥</span> Natural Pest Control</div>
+        <div class="phone-row"><span class="icon">🎥</span> Rainwater Harvesting</div>
+        <div class="phone-row"><span class="icon">📄</span> Moon Calendar 2026</div>
+        <div class="phone-row"><span class="icon">🔊</span> Elder Voice Guides</div>
+        <div class="phone-btn green">▶ Play Offline</div>
+      </div>
+      <div class="screen-label">IKS Knowledge</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-dot"></div></div>
+      <div class="phone-screen">
+        <div class="phone-title">🤖 AI Crop Advisor</div>
+        <div class="phone-row"><span class="icon">📷</span> Photo Diagnosis</div>
+        <div class="phone-row" style="background:#1A3A1A"><span class="icon">✅</span> <span style="color:#2ECC71">Healthy — No disease</span></div>
+        <div class="phone-stat"><div class="num">78%</div><div class="lbl">Soil moisture — Optimal</div></div>
+        <div class="phone-row"><span class="icon">📅</span> Plant spinach: 15 Jul</div>
+        <div class="phone-row"><span class="icon">💧</span> Water: every 3 days</div>
+        <div class="phone-btn blue">📊 Full Report</div>
+      </div>
+      <div class="screen-label">AI Advisor</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-dot"></div></div>
+      <div class="phone-screen">
+        <div class="phone-title">🛒 Marketplace</div>
+        <div class="phone-row"><span class="icon">🍅</span> Tomatoes — 50kg — R480</div>
+        <div class="phone-row"><span class="icon">🥬</span> Spinach — 20kg — R180</div>
+        <div class="phone-row"><span class="icon">🌽</span> Maize — 100kg — R620</div>
+        <div class="phone-stat"><div class="num">3</div><div class="lbl">Buyer enquiries today</div></div>
+        <div class="phone-btn">+ List My Produce</div>
+      </div>
+      <div class="screen-label">Marketplace</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-dot"></div></div>
+      <div class="phone-screen">
+        <div class="phone-title">🤝 My Cooperative</div>
+        <div class="phone-stat"><div class="num">12</div><div class="lbl">Members — Moletele Youth Co-op</div></div>
+        <div class="phone-row"><span class="icon">🚜</span> Tractor: Tue 8am (booked)</div>
+        <div class="phone-row"><span class="icon">🌱</span> Bulk seeds order: 3 days</div>
+        <div class="phone-row"><span class="icon">💬</span> Group chat (5 unread)</div>
+        <div class="phone-btn green">📋 View Constitution</div>
+      </div>
+      <div class="screen-label">Cooperative</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE TABLE -->
+<!-- FEATURE TABLE -->
+<div class="sec-wrap">
+  <div class="sec-label">Full Feature Set</div>
+  <div class="sec-title">Every Feature & Why It's Never Been Done</div>
+  <div class="divider"></div>
+  <table class="feat-table">
+    <thead><tr><th>Module</th><th>Feature</th><th>Why It's First-of-Its-Kind</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td class="module">IKS Vault</td><td>Elder-recorded video library in 5 local languages</td><td class="first">No digital IKS archive exists for SA youth farmers</td><td>Preserves dying knowledge; builds cultural pride</td></tr>
+      <tr><td class="module">IKS Vault</td><td>Offline-first content (works with no data)</td><td class="first">Agriculture apps assume connectivity — rural youth have none</td><td>Reaches deepest rural users</td></tr>
+      <tr><td class="module">AI Advisor</td><td>Photo-based crop disease diagnosis</td><td class="first">Combined with IKS remedies — no app does both</td><td>Saves crops before loss occurs</td></tr>
+      <tr><td class="module">AI Advisor</td><td>IKS-integrated AI recommendations</td><td class="first">AI + traditional knowledge fusion is globally novel</td><td>Culturally trusted advice</td></tr>
+      <tr><td class="module">Marketplace</td><td>Youth-verified seller profiles + escrow</td><td class="first">Protects first-time sellers from buyer fraud</td><td>Youth earn full margin safely</td></tr>
+      <tr><td class="module">Marketplace</td><td>School & NGO buyer network</td><td class="first">No app targets institutional buyers for youth produce</td><td>Stable, recurring income stream</td></tr>
+      <tr><td class="module">Cooperative</td><td>In-app cooperative registration (CIPC guided)</td><td class="first">Legal formation via mobile — never done in SA agri-tech</td><td>Formalises youth collectives</td></tr>
+      <tr><td class="module">Cooperative</td><td>Shared resource scheduling system</td><td class="first">Uber-style booking for tractors, irrigation, storage</td><td>Reduces cost per farmer by ~40%</td></tr>
+      <tr><td class="module">AgriCareer</td><td>SETA-linked short course completion certificates</td><td class="first">Earns recognised credentials via mobile app</td><td>Employability + entrepreneurship</td></tr>
+      <tr><td class="module">AgriCareer</td><td>"AgriStars" — youth success story content</td><td class="first">TikTok-style agri-inspiration feed — no equivalent exists</td><td>Shifts perception at scale</td></tr>
+      <tr><td class="module">Finance</td><td>AI-matched grant finder (profile-based)</td><td class="first">Shows only grants you qualify for — no generic lists</td><td>Removes funding discovery barrier</td></tr>
+      <tr><td class="module">Finance</td><td>One-click grant application assistant</td><td class="first">AI drafts the application from your profile data</td><td>Increases successful applications 3×</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- IKS MODULE -->
+<!-- IKS MODULE -->
+<div class="sec-wrap">
+  <div class="sec-label">The IKS Advantage</div>
+  <div class="sec-title">Why Indigenous Knowledge is Our Moat</div>
+  <div class="sec-sub">No competitor can replicate this. IKS is our unfair advantage — it is community-owned, culturally trusted, and impossible to copy from a Silicon Valley office.</div>
+  <div class="divider"></div>
+  <div class="grid-3">
+    <div class="card gold-border">
+      <div class="card-icon">🌍</div>
+      <div class="card-title">Culturally Trusted</div>
+      <div class="card-body">Youth trust advice from their own communities and elders far more than generic corporate agri-apps. IKS content drives 3× higher engagement in pilot communities.</div>
+    </div>
+    <div class="card green-border">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">Scientifically Validated</div>
+      <div class="card-body">We partner with university agriculture departments to cross-validate IKS practices with modern science — giving users the best of both worlds with full credibility.</div>
+    </div>
+    <div class="card blue-border">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">Competitive Moat</div>
+      <div class="card-body">IKS content takes years to collect, validate, and localise. It cannot be scraped, bought, or replicated quickly. It is our permanent competitive advantage.</div>
+    </div>
+    <div class="card" style="border-color:var(--purple)">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">Multi-Language</div>
+      <div class="card-body">Content in Sepedi, Tshivenda, Xitsonga, Zulu, and Sotho — reaching communities that English-only agri-apps completely ignore. Language is inclusion.</div>
+    </div>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="card-icon">📱</div>
+      <div class="card-title">Offline-First</div>
+      <div class="card-body">All IKS content is downloadable for offline use. No data needed in the field. Designed for the reality of rural South Africa, not the assumption of city connectivity.</div>
+    </div>
+    <div class="card" style="border-color:var(--green)">
+      <div class="card-icon">🤝</div>
+      <div class="card-title">Community Co-Created</div>
+      <div class="card-body">Elders, youth, and researchers co-create content. Revenue sharing with contributing communities. This is not extraction — it is partnership and preservation.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH STACK -->
+<!-- TECH STACK -->
+<div class="sec-wrap">
+  <div class="sec-label">Technology</div>
+  <div class="sec-title">Built to Scale Across Africa</div>
+  <div class="sec-sub">Offline-first, low-data, multilingual, and AI-powered — engineered for the African context, not adapted from it.</div>
+  <div class="divider"></div>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <h4>📱 Frontend</h4>
+      <div class="stack-item">React Native <span>iOS + Android</span></div>
+      <div class="stack-item">Expo <span>Fast builds</span></div>
+      <div class="stack-item">WatermelonDB <span>Offline sync</span></div>
+      <div class="stack-item">i18next <span>5 languages</span></div>
+      <div class="stack-item">TailwindRN <span>UI system</span></div>
+    </div>
+    <div class="stack-card">
+      <h4>⚙️ Backend</h4>
+      <div class="stack-item">Node.js + Fastify <span>API layer</span></div>
+      <div class="stack-item">PostgreSQL <span>Core data</span></div>
+      <div class="stack-item">Redis <span>Caching</span></div>
+      <div class="stack-item">Cloudflare R2 <span>Media storage</span></div>
+      <div class="stack-item">Stripe / Ozow <span>Payments</span></div>
+    </div>
+    <div class="stack-card">
+      <h4>🤖 AI / ML</h4>
+      <div class="stack-item">TensorFlow Lite <span>On-device ML</span></div>
+      <div class="stack-item">PlantNet API <span>Crop diagnosis</span></div>
+      <div class="stack-item">OpenAI GPT-4o <span>Grant assistant</span></div>
+      <div class="stack-item">OpenWeather API <span>Weather alerts</span></div>
+      <div class="stack-item">Custom IKS model <span>Trained on vault</span></div>
+    </div>
+    <div class="stack-card">
+      <h4>☁️ Infrastructure</h4>
+      <div class="stack-item">AWS Africa (Cape Town) <span>Low latency</span></div>
+      <div class="stack-item">Cloudflare CDN <span>Edge delivery</span></div>
+      <div class="stack-item">GitHub Actions <span>CI/CD</span></div>
+      <div class="stack-item">Sentry <span>Error monitoring</span></div>
+      <div class="stack-item">Firebase Analytics <span>Usage data</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT -->
+<!-- IMPACT -->
+<div class="sec-wrap">
+  <div class="sec-label">Projected Impact</div>
+  <div class="sec-title">Year 3 Targets — Measurable, Accountable</div>
+  <div class="divider"></div>
+  <div class="impact-grid">
+    <div class="impact-card"><div class="big">100K</div><div class="lbl">Youth users across South Africa</div></div>
+    <div class="impact-card"><div class="big">10K</div><div class="lbl">Youth employed or self-employed in agri</div></div>
+    <div class="impact-card"><div class="big">500+</div><div class="lbl">IKS videos archived &amp; preserved</div></div>
+    <div class="impact-card"><div class="big">R50M</div><div class="lbl">Youth farmer produce sold via marketplace</div></div>
+    <div class="impact-card"><div class="big">300+</div><div class="lbl">Youth cooperatives registered</div></div>
+    <div class="impact-card"><div class="big">3</div><div class="lbl">Countries: SA, Zimbabwe, Kenya</div></div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">🌱 AgroYouth</div>
+  <p style="color:var(--gold);font-weight:700;margin-bottom:6px">Agriculture is not a last resort — it's the first choice of a smart generation.</p>
+  <p>Team 1 · Category 3: Jobs for Youth · Moila Tekollo · Mukwevho Ronewa Innocent · Tshovelo Phanuel Baloyi</p>
+  <p style="margin-top:8px">agroyouth@team1.co.za &nbsp;|&nbsp; @AgroYouthApp &nbsp;|&nbsp; agroyouth.co.za</p>
+</footer>
+
+</body>
+</html>

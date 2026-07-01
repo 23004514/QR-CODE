@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroYouth Forgot Password</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* 🚜 AGRICULTURAL BACKGROUND: golden wheat field */
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+            padding: 35px 30px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #1e3a2a;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 20px;
+            border: 1.5px solid rgba(46, 125, 50, 0.25);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+                outline: none;
+                box-sizing: border-box;
+            }
+
+            input:focus {
+                border-color: #66bb6a;
+                box-shadow: 0 0 0 3px rgba(102,187,106,0.12);
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 12px 16px;
+                background: linear-gradient(90deg,#2e7d32,#66bb6a);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform .12s ease, box-shadow .12s ease;
+            }
+
+            .btn:hover { transform: translateY(-2px); }
+
+            .note {
+                font-size: 13px;
+                color: #264b36;
+                text-align: center;
+                margin-top: 12px;
+            }
+
+            .icon { margin-right: 8px; }
+        </style>
+    <body>
+        <form action="#" method="post" novalidate>
+            <h2>Forgot Password</h2>
+
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+            <button class="btn" type="submit"><i class="fas fa-envelope icon"></i>Send Reset Link</button>
+
+            <p class="note">Check your inbox for instructions. If you don't see an email, check spam or try again.</p>
+        </form>
+    </body>
+    </html>
